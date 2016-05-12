@@ -5,8 +5,11 @@ module ProductAPI
     prefix "products"
 
     format :json
+    formatter :json, Grape::Formatter::ActiveModelSerializers
+
     get :list do
-      Product.all
+      @products = Product.all
+
     end
   end
 end
