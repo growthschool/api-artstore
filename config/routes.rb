@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+
   mount ProductAPI::API => '/'
+  mount UserAPI::API => '/'
 
 end

@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def authenticate(password)
+    !!valid_password?(password) 
+  end
+
 end
