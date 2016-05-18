@@ -8,5 +8,5 @@
 
 
 for i in 1..10 do 
-  Product.create!(:title => "Product #{i}")
+  Product.create!(:title => "Product #{i}", :price => rand(100))
 end
