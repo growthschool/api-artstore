@@ -27,6 +27,8 @@ gem 'grape'
 gem 'grape-active_model_serializers'
 
 gem "devise"
+
+gem "stripe"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
