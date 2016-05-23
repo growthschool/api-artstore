@@ -4,11 +4,11 @@ module StripeWrapper
 
   attr_reader :error_message, :response
 
-#  def initalize#(number, exp_month, exp_year, csv)
-
-#  end
-
   def initialize(options={})
+    @number = options[:number]
+    @cvc = options[:cvc]
+    @exp_month = options[:exp_month]
+    @exp_year = options[:exp_year]
     @response = options[:response]
     @error_message = options[:error_message]
   end
@@ -17,10 +17,10 @@ module StripeWrapper
     begin
       response = Stripe::Token.create(
         :card => {
-          :number => "4242424242424242",
-          :exp_month => 5,
-          :exp_year => 2017,
-          :cvc => "314"
+          :number => @number,
+          :exp_month => @exp_month,
+          :exp_year => 20,
+          :cvc => @cvc
         } )
       Token.new(:response => response)
     rescue Stripe::CardError => e

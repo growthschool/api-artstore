@@ -23,8 +23,9 @@ class User < ActiveRecord::Base
     !!valid_password?(password) 
   end
 
-  def create_card!
-    create_token = StripeWrapper::Token.new.create
+  def create_card!(number, cvc, exp_month, exp_year)
+    create_token = StripeWrapper::Token.new(:number => number,
+    :cvc => cvc, :exp_month => exp_month, :exp_year => exp_year).create
 
     if create_token.successful?
 
