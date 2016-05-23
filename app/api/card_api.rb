@@ -5,6 +5,8 @@ module CardAPI
     prefix "cards"
     format :json
     
+    helpers UserAPI::AuthHelper
+
     params do
       requires :token, type: String, desc: "API Token for auth"
       requires :number, type: String, desc: "CreditCard Number"
@@ -15,11 +17,14 @@ module CardAPI
 
 
     post do 
-      @user = User.last
-      
-      @user.create_card!(params[:number], params[:cvc], params[:exp_month], params[:year])
 
-      @card = CreditCard.last
+
+      authenticate!
+
+      
+      current_user.create_card!(params[:number], params[:cvc], params[:exp_month], params[:year])
+
+      @card = current_user.credit_cards.last
     end
   end
 end
